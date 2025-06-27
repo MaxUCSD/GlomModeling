@@ -1,0 +1,10 @@
+name: vnoaob
+channels:
+  - conda-forge
+dependencies:
+  - numpy
+  - python=3.11
+  - matplotlib
+  - scipy
+  - plotly
+prefix: /home/max/mambaforge/envs/vnoaob
