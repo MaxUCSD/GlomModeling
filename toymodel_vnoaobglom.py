@@ -80,7 +80,7 @@ fig.savefig(fname='all_vars.png')
 fig_plotly = go.Figure(data=[go.Scatter3d(
     x=t_eval,
     y=results['glom0'].y[2],
-    z=results['glom1'].y[2],
+    z=results['glom2'].y[2],
     mode='markers',
     marker=dict(
         size=2,

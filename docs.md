@@ -104,3 +104,50 @@ c &= \frac{1}{(1 + \chi \tau_c)}
 \end{align}$$
 
 Yay! this means if $\chi \tau_c$ is big then we go towards $0$!
+
+# 6/27/25
+
+Okay, after that final change we have:
+
+$$\frac{dc}{dt} = \frac{1-c}{\tau_c} - c\chi$$ 
+$$\frac{ds}{dt} = -\frac{s}{\tau_{s}} + c\chi$$
+$$\frac{dr}{dt} = -\frac{r}{\tau_r} + s $$
+$$ \chi = \frac{I(odor,glom)}{I_{max}}\sum_{t_{tap}} \delta (t - t_{tap}) $$
+
+## Deriving the steady state solutions
+
+### EQ 1 Capacity
+$$\begin{align}
+\frac{dc}{dt} &= \frac{1-c}{\tau_c} -c\chi\\
+0 &= \frac{1-c}{\tau_c} -  c\chi \\ 
+c\chi &= \frac{1-c}{\tau_c} \\
+c\chi \tau_c &= 1 - c \\
+c\chi \tau_c + c &= 1 \\
+c (\chi \tau_c + 1) &= 1 \\
+c &= \frac{1}{(1 + \chi \tau_c)} 
+\end{align}$$
+
+### EQ 2 Synaptic Input
+$$\begin{align}
+\frac{ds}{dt} &= -\frac{s}{\tau_{s}} + c\chi\\
+0 &= -\frac{s}{\tau_{s}} + c\chi \\
+\frac{s}{\tau_{s}} &= c\chi \\
+s &= c\chi  \tau_{s}
+\end{align}$$
+
+### EQ 2 Synaptic Input
+$$\begin{align}
+\frac{dr}{dt} &= -\frac{r}{\tau_r} + s  \\
+0 &= -\frac{r}{\tau_{r}} + s\\
+\frac{r}{\tau_{r}} &= s \\
+r &= s \tau_{r}
+\end{align}$$
+
+## TODO 
+- I want to derive analytical expressions for the long term behavior of this system, given an infinite time spike train. At certain adaptation rates, given by the various $\tau$'s, $r$ never goes below a certain value. Also, what is the maximum value we can drive $r$? 
+    - Ultimately, what's interesting about this is how it will affect the information capacity of the system. 
+        - It's not clear how we should think about information capacity... Certainly in terms of $I$
+
+- Next we will add a normalization layer in the Mitral Cells like in the main olfactory system and ask about their readout. 
+
+- Some of these questions are still, as of yet, not super clear. 
