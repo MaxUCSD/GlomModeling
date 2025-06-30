@@ -129,7 +129,7 @@ For $s = -1,1$
     - $[5,0] + 1[1, 0] = [5,0] + [1,0] = [6, 0]$
 
 
-So for $\mu = 1$, the line segment goes from $[4, 0]$ to $[7, 0]$
+So for $\mu = 1$, the line segment goes from $[4, 0]$ to $[6, 0]$
 
 Theyre is no overlap as of yet, but what if we increased $R$ by $5$.
 
@@ -168,3 +168,96 @@ So for $\mu = 1$, the line segment goes from $[0, 0]$ to $[10, 0]$
 
 **They Intersect!**
 
+Consider the limit as $R \rightarrow \inf$, then, only parallel lines will be safe!
+
+## The role of $\bold{u}$
+
+Okay, so so far we have a few objects in our expression. We know the role of $\bold{x}$, $R$, and $s$. But what is $\bold{u}?$ In a sense, $\bold{u}$ defines a *direction*. 
+
+Consider for a moment the simplified expression: 
+
+$$s\bold{u}$$ 
+
+Where $s$, is the same as before. Now consider this a function of $s$, so we have: 
+
+$$f(s) = s\bold{u}$$
+
+What is the role of $\bold{u}$ in this function? Lets play with some real numbers and see what happens. Before we start remember that $\bold{u}$ is a vector in $\mathbb{R}^N$. For visualization purposes let's set $N = 2$. Now, what happens to the resulting output if $\bold{u} = [1, 0]$, what happens as we move $s$?
+
+$$f(s) = s[1,0] = [s, 0]$$
+
+This is a horizontal line. 
+
+What about if $\bold{u} = [0, 1]$
+
+$$f(s) = s[0,1] = [0, s]$$
+
+This a vertical line. 
+
+Let's do one more, $\bold{u} = [2, 3]:$
+
+$$f(s) = s[2,3] = [s2, s3]$$
+
+This is telling us to move twice in the x direction and 3 times in the y direction. It is a slope! Of course, in $N$ dimensions, it's not really a slope, its more like a direction. 
+
+Another way of seeing this is if we take the derivative of our function:
+
+$$\frac{d}{ds}f(s) = \bold{u}$$
+
+## Summary so far. 
+
+Thus far we have been examinging the equation:
+
+$$ \bold{x}^\mu + Rs\bold{u}^\mu $$
+
+$\mu$ indexes $P$ line segments. $\bold{x}^\mu$ represents the center of the line, it is a point in $\mathbb{R}^N$. $R$ controls the length of each line. They motivate $R$ slightly differently "...measures the extent of the
+segments relative to the distance between the centers". We parameterize the line segment with $s$, a scalar, $-1 \leq s \leq 1$, and $\bold{u}$, a vector in $\mathbb{R}^N$ controls the direction. 
+
+## Adding $\bold{w}$ to the equation.
+We are going to be building up the classification inequality that they use.
+
+$$ y^\mu\bold{w} \cdot (\bold{x}^\mu + Rs\bold{u}^\mu ) \geq \kappa$$
+
+
+Consider what it would mean to slightly change our expression (now into an equation):
+
+$$ \bold{w} \cdot (\bold{x}^\mu + Rs\bold{u}^\mu ) = 0$$
+
+
+Lets start by considering the case where $s = 0$, so we have: 
+
+$$ \bold{w} \cdot (\bold{x}^\mu) = 0$$
+
+Let $\bold{x} = [1,0]$ (dropping the $\mu$ index for now) 
+
+$$
+\begin{align}
+
+\bold{w} \cdot [1,0] &= 0 \\
+\bold{w}_11 + \bold{w}_20 &= 0 \\
+\bold{w}_1 &= 0 \\
+
+\end{align}
+$$
+
+Therefore, $\bold{w}$ must have the form: $\bold{w} = [0, \bold{w}_2]$ for any $\bold{w}_2$. In order to satisfy the constraint $\bold{w} \cdot \bold{x} = 0$, for some $\bold{x}$, $\bold{w}$ has to be perpendicular (orthogonal in higher dimensions) to $\bold{x}$! This is just the implicit form of something about the dot product we already knew: if two vectors dot products $=0$, they are orthogonal. The set of all vectors (while holding one fixed) which satisifes this constraint is a hyperplane. 
+
+It might be helpful to see this in 3 dimensions. 
+
+Let $\bold{x} = [1,0,1]$ (dropping the $\mu$ index for now) 
+
+$$
+\begin{align}
+
+\bold{w} \cdot [1,0,1] &= 0 \\
+\bold{w}_11 + \bold{w}_20 + \bold{w}_31 &= 0 \\
+\bold{w}_1 + \bold{w}_3&= 0 \\
+\bold{w}_3 &= -\bold{w}_1  \\
+
+
+\end{align}
+$$
+
+Therefore, $\bold{w}$ must have the form: $\bold{w} = [\bold{w}_1, \bold{w}_2, -\bold{w}_1]$
+
+This is a plane!
