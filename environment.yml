@@ -6,5 +6,7 @@ dependencies:
   - python=3.11
   - matplotlib
   - scipy
+  - jupyter
+  - ipython
   - plotly
 prefix: /home/max/mambaforge/envs/vnoaob
