@@ -228,36 +228,152 @@ Lets start by considering the case where $s = 0$, so we have:
 
 $$ \bold{w} \cdot (\bold{x}^\mu) = 0$$
 
-Let $\bold{x} = [1,0]$ (dropping the $\mu$ index for now) 
+Let $\bold{w} = [1,0]$ (and drop the $\mu$ index for now) 
 
 $$
 \begin{align}
 
-\bold{w} \cdot [1,0] &= 0 \\
-\bold{w}_11 + \bold{w}_20 &= 0 \\
-\bold{w}_1 &= 0 \\
+[1,0] \cdot \bold{x}  &= 0 \\
+1 \bold{x}_1 + 0 \bold{x}_2 &= 0 \\
+\bold{x}_1 &= 0 \\
 
 \end{align}
 $$
 
-Therefore, $\bold{w}$ must have the form: $\bold{w} = [0, \bold{w}_2]$ for any $\bold{w}_2$. In order to satisfy the constraint $\bold{w} \cdot \bold{x} = 0$, for some $\bold{x}$, $\bold{w}$ has to be perpendicular (orthogonal in higher dimensions) to $\bold{x}$! This is just the implicit form of something about the dot product we already knew: if two vectors dot products $=0$, they are orthogonal. The set of all vectors (while holding one fixed) which satisifes this constraint is a hyperplane. 
+Therefore, $\bold{x}$ must have the form: $\bold{x} = [0, \bold{x}_2]$ for any $\bold{x}_2$. In order to satisfy the constraint $\bold{w} \cdot \bold{x} = 0$, for some $\bold{w}$, $\bold{x}$ has to be perpendicular (orthogonal in higher dimensions) to $\bold{w}$! This is just the implicit form of something about the dot product we already knew: if two vectors dot products $=0$, they are orthogonal. The set of all vectors (while holding one fixed) which satisifes this constraint is a hyperplane. 
 
 It might be helpful to see this in 3 dimensions. 
 
-Let $\bold{x} = [1,0,1]$ (dropping the $\mu$ index for now) 
+Let $\bold{w} = [1,0,1]$ (dropping the $\mu$ index for now) 
 
 $$
 \begin{align}
 
-\bold{w} \cdot [1,0,1] &= 0 \\
-\bold{w}_11 + \bold{w}_20 + \bold{w}_31 &= 0 \\
-\bold{w}_1 + \bold{w}_3&= 0 \\
-\bold{w}_3 &= -\bold{w}_1  \\
+\bold{x} \cdot [1,0,1] &= 0 \\
+\bold{x}_11 + \bold{x}_20 + \bold{x}_31 &= 0 \\
+\bold{x}_1 + \bold{x}_3&= 0 \\
+\bold{x}_3 &= -\bold{x}_1  \\
+
+\end{align}
+$$
+
+Therefore, $\bold{x}$ must have the form: $\bold{x} = [\bold{x}_1, \bold{x}_2, -\bold{x}_1]$
+
+This is a plane!
+
+What we want to show is that $\bold{w}$ is normal to $\bold{x}$. Also, It is important to note that $\bold{x}$ right now just represents the input space, it is not (yet) the actual data points. We can pick two points on the hyperplane, $\bold{x}^1$ and $\bold{x}^2$
+
+Our goal is to show that $\bold{w}$ is orthogonal to $y = \bold{x}^2 - \bold{x}^1$. $y$ is a vector which is totally on the hyperplane, it is a dispalcement vector. Recall that $\bold{w} \cdot \bold{x}$ = 0 is how we define a point $\bold{x}$, thus: 
+
+$$
+\bold{w} \cdot \bold{x}^1 = 0
+$$
+$$
+\bold{w} \cdot \bold{x}^2 = 0
+$$
+
+Therefore, $\bold{w} \cdot(\bold{x}^2 - \bold{x}^1) = 0$
+
+To see this, note that the dot product distributes over subtraction of two vectors. This also works in the case of a bias. 
+
+
+
+$$
+\bold{w} \cdot \bold{x}^1 + \kappa = 0
+$$
+$$
+\bold{w} \cdot \bold{x}^2 + \kappa = 0
+$$
+$$
+\bold{w} \cdot \bold{x}  = -\kappa
+
+$$
+
+ $$\bold{w} \cdot(\bold{x}^2 - \bold{x}^1) = (\bold{w} \cdot \bold{x}^2)
+ -(\bold{w} \cdot \bold{x}^1) = (-\kappa - -\kappa) = 0
+ $$
+
+
+
+ **NOTE**
+
+ $\bold{w}$ encodes a direction! 
+ To see this, note that we have been working with the equation 
+
+
+ $$
+ \bold{w_1}\bold{x_1} + \bold{w_2}\bold{x_2} + \kappa = 0
+
+ $$
+
+ We can rearange this to slope intercept form $y = mx + b$ by solving for $x_2(y)$  in terms of $x_1(x)$:
+
+ $$
+ \begin{align} 
+ \bold{w_1}\bold{x_1} + \bold{w_2}\bold{x_2} + \kappa &= 0 \\
+ \bold{w_2}\bold{x_2} &= -\bold{w_1}\bold{x_1} - \kappa \\
+ \bold{x_2} &= - \frac{\bold{w_1}\bold{x_1}}{\bold{w_2}} + \frac{\kappa}{\bold{w_2}}
+\end{align}
+ $$
+
+ Thus, the slope of the hyperplane is $-\frac{{\bold{w_1}}}{{\bold{w_2}}}$ and the intercept is  $\frac{\kappa}{\bold{w_2}}$
+
+
+ **NOTE #2**
+
+ Do not confuse the above with the slope of the $\bold{w}$ vector. That slope we can derive as follows (by using point point slope form and remembering that $\bold{w}$ starts at the origin):
+
+ $$
+\begin{align}
+slope &= (y_2 - y_1)/(x_2 - x_1) \\
+slope &= (\bold{w_2} - 0)/(\bold{w_1} - 0) \\
+slope &= \bold{w_2}/\bold{w_1} \\
+\end{align}
+ $$
+
+ Recall that if two lines are perpendicular the product of their slopes = -1
+
+ $$
+ \frac{\bold{w_2}}{\bold{w_1}} (-\frac{{\bold{w_1}}}{{\bold{w_2}}}) = -1
+ $$
+
+ ## Summary so far
+
+ Okay disregard everything, this is the important bit. We are going to work in $2d$ but the reasoning extends. The way I want to think of hyperplanes as defined by their normal is like this. Given some vector $w$, there is a set of vectors $x$, such that $w \cdot x = 0.$ This defines a hyperplane *through the origin* (anything dotted with the zero vector = $0$) which is gauranteed to be orthogonal to $x$. However, we do not need to go through the origin, we can shift the hyperplane by a constant factor, what we have been calling $\kappa$. We essentially just did a lot of work convincing ourselves that $w$ implicitly defines a hyperplane by orthogonality. 
+
+
+
+<!-- 
+
+
+Imagine for a moment we had 
+
+$$ \bold{w} \cdot \bold{x} = \kappa$$
+$$
+\begin{align}
+
+\bold{x} \cdot [1,1,1] &= \kappa \\
+\bold{x}_11 + \bold{x}_21 + \bold{x}_31 &= \kappa \\
+\bold{x}_1 + \bold{x}_2 + \bold{x}_3&= \kappa \\
+\bold{x}_2 + \bold{x}_3 &= -\bold{x}_1 + \kappa  \\
+\bold{x}_3 &= -\bold{x}_2 -\bold{x}_1 + \kappa  \\
 
 
 \end{align}
 $$
 
-Therefore, $\bold{w}$ must have the form: $\bold{w} = [\bold{w}_1, \bold{w}_2, -\bold{w}_1]$
+Therefore, $\bold{x}$ must have the form: $\bold{x} = [\bold{x}_1, \bold{x}_2, -\bold{x}_2 -\bold{x}_1 + \kappa]$
 
-This is a plane!
+Lets pick some $\bold{x}'s$
+
+$\bold{x} = [1, 2, -2 - 1 + \kappa]$
+
+$\bold{x} = [1, 2, -3 + \kappa]$
+
+$\bold{w} \cdot \bold{x}$
+
+$[1,1,1] \cdot [1,2,-3 + \kappa]$
+
+$ 1(1) + 1(2) + 1(-3 + \kappa)$
+
+$ 3-3 + \kappa$ -->
